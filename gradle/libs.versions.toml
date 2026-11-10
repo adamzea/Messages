@@ -30,6 +30,8 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #Helpers
 ez-vcard = "0.12.2"
+#Testing
+junit = "4.13.2"
 [libraries]
 #AndroidX
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
@@ -50,6 +52,8 @@ mmslib = { module = "org.fossify:mmslib", version.ref = "mmslib" }
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 #Helpers
 ez-vcard = { module = "com.googlecode.ez-vcard:ez-vcard", version.ref = "ez-vcard" }
+#Testing
+junit = { module = "junit:junit", version.ref = "junit" }
 #Kotlin
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 [bundles]

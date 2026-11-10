@@ -103,6 +103,7 @@ class SettingsActivity : SimpleActivity() {
         setupLanguage()
         setupManageBlockedNumbers()
         setupManageBlockedKeywords()
+        setupAutoReply()
         setupChangeDateTimeFormat()
         setupFontSize()
         setupShowCharacterCounter()
@@ -214,6 +215,18 @@ class SettingsActivity : SimpleActivity() {
 
         settingsManageBlockedKeywordsHolder.setOnClickListener {
             Intent(this@SettingsActivity, ManageBlockedKeywordsActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
+    }
+
+    private fun setupAutoReply() = binding.apply {
+        settingsAutoReply.text = getString(
+            if (config.autoReplyEnabled) R.string.auto_reply_on else R.string.auto_reply_off
+        )
+
+        settingsAutoReplyHolder.setOnClickListener {
+            Intent(this@SettingsActivity, AutoReplyActivity::class.java).apply {
                 startActivity(this)
             }
         }

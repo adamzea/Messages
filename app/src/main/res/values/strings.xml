@@ -109,6 +109,23 @@
     <string name="group_mms">Group MMS</string>
     <string name="separate_messages">Send separately</string>
     <string name="send_long_message_mms">Send long messages as MMS</string>
+    <!-- Automatic replies -->
+    <string name="auto_reply">Automatic replies</string>
+    <string name="auto_reply_on">On</string>
+    <string name="auto_reply_off">Off</string>
+    <string name="auto_reply_enable">Send automatic replies</string>
+    <string name="auto_reply_description">Everyone who messages you gets this reply by SMS, except blocked numbers and messages containing blocked keywords. Senders without a phone number can\'t receive replies.</string>
+    <string name="auto_reply_message">Reply message</string>
+    <string name="auto_reply_default_message">I can\'t reply right now. I\'ll get back to you as soon as I can.</string>
+    <string name="auto_reply_empty_message_warning">No replies are sent while the message is empty.</string>
+    <string name="auto_reply_cooldown">Reply to the same sender only once every</string>
+    <string name="auto_reply_schedule">Schedule</string>
+    <string name="auto_reply_use_schedule">Only reply on a schedule</string>
+    <string name="auto_reply_start_time">Start time</string>
+    <string name="auto_reply_end_time">End time</string>
+    <!-- Shown after an end time that falls on the day after the start time, e.g. "9:00 AM (next day)" -->
+    <string name="auto_reply_next_day">%s (next day)</string>
+    <string name="auto_reply_no_days_warning">No replies are sent while no days are selected.</string>
     <!-- Export / Import -->
     <string name="messages">Messages</string>
     <string name="keywords">Keywords</string>

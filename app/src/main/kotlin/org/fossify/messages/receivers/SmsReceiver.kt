@@ -22,6 +22,7 @@ import org.fossify.messages.extensions.messagesDB
 import org.fossify.messages.extensions.shouldUnarchive
 import org.fossify.messages.extensions.showReceivedMessageNotification
 import org.fossify.messages.extensions.updateConversationArchivedStatus
+import org.fossify.messages.helpers.AutoReplyHelper
 import org.fossify.messages.helpers.ReceiverUtils.isMessageFilteredOut
 import org.fossify.messages.helpers.refreshConversations
 import org.fossify.messages.helpers.refreshMessages
@@ -67,6 +68,12 @@ class SmsReceiver : BroadcastReceiver() {
                     threadId = threadId,
                     subscriptionId = subscriptionId,
                     status = status
+                )
+
+                AutoReplyHelper.replyIfNeeded(
+                    context = appContext,
+                    address = address,
+                    subscriptionId = subscriptionId.takeIf { it != -1 }
                 )
             } finally {
                 pending.finish()

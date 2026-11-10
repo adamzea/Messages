@@ -20,6 +20,7 @@ import org.fossify.messages.extensions.insertOrUpdateConversation
 import org.fossify.messages.extensions.shouldUnarchive
 import org.fossify.messages.extensions.showReceivedMessageNotification
 import org.fossify.messages.extensions.updateConversationArchivedStatus
+import org.fossify.messages.helpers.AutoReplyHelper
 import org.fossify.messages.helpers.ReceiverUtils.isMessageFilteredOut
 import org.fossify.messages.helpers.refreshConversations
 import org.fossify.messages.helpers.refreshMessages
@@ -90,6 +91,13 @@ class MmsReceiver : MmsReceivedReceiver() {
             body = mms.body,
             threadId = mms.threadId,
             bitmap = glideBitmap
+        )
+
+        // only the sender gets the reply, also when the message arrived in a group conversation
+        AutoReplyHelper.replyIfNeeded(
+            context = context,
+            address = address,
+            subscriptionId = mms.subscriptionId.takeIf { it != -1 }
         )
 
         val conversation = context.getConversations(mms.threadId).firstOrNull() ?: return

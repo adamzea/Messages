@@ -2,6 +2,7 @@ package org.fossify.messages.helpers
 
 import android.content.Context
 import org.fossify.commons.helpers.BaseConfig
+import org.fossify.messages.R
 import org.fossify.messages.extensions.getDefaultKeyboardHeight
 import org.fossify.messages.models.Conversation
 
@@ -151,4 +152,50 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(KEEP_CONVERSATIONS_ARCHIVED, false)
         set(keepConversationsArchived) = prefs.edit()
             .putBoolean(KEEP_CONVERSATIONS_ARCHIVED, keepConversationsArchived).apply()
+
+    var autoReplyEnabled: Boolean
+        get() = prefs.getBoolean(AUTO_REPLY_ENABLED, false)
+        set(autoReplyEnabled) = prefs.edit().putBoolean(AUTO_REPLY_ENABLED, autoReplyEnabled).apply()
+
+    var autoReplyMessage: String
+        get() = prefs.getString(AUTO_REPLY_MESSAGE, null)
+            ?: context.getString(R.string.auto_reply_default_message)
+        set(autoReplyMessage) = prefs.edit().putString(AUTO_REPLY_MESSAGE, autoReplyMessage).apply()
+
+    var autoReplyCooldownSeconds: Int
+        get() = prefs.getInt(AUTO_REPLY_COOLDOWN_SECONDS, AUTO_REPLY_DEFAULT_COOLDOWN_SECONDS)
+            .coerceAtLeast(AUTO_REPLY_MIN_COOLDOWN_SECONDS)
+        set(autoReplyCooldownSeconds) = prefs.edit()
+            .putInt(AUTO_REPLY_COOLDOWN_SECONDS, autoReplyCooldownSeconds).apply()
+
+    var autoReplyScheduleEnabled: Boolean
+        get() = prefs.getBoolean(AUTO_REPLY_SCHEDULE_ENABLED, false)
+        set(autoReplyScheduleEnabled) = prefs.edit()
+            .putBoolean(AUTO_REPLY_SCHEDULE_ENABLED, autoReplyScheduleEnabled).apply()
+
+    var autoReplyScheduleDays: Int
+        get() = prefs.getInt(AUTO_REPLY_SCHEDULE_DAYS, AUTO_REPLY_ALL_DAYS)
+        set(autoReplyScheduleDays) = prefs.edit()
+            .putInt(AUTO_REPLY_SCHEDULE_DAYS, autoReplyScheduleDays).apply()
+
+    var autoReplyScheduleStart: Int
+        get() = prefs.getInt(AUTO_REPLY_SCHEDULE_START, AUTO_REPLY_DEFAULT_START_MINUTES)
+        set(autoReplyScheduleStart) = prefs.edit()
+            .putInt(AUTO_REPLY_SCHEDULE_START, autoReplyScheduleStart).apply()
+
+    var autoReplyScheduleEnd: Int
+        get() = prefs.getInt(AUTO_REPLY_SCHEDULE_END, AUTO_REPLY_DEFAULT_END_MINUTES)
+        set(autoReplyScheduleEnd) = prefs.edit()
+            .putInt(AUTO_REPLY_SCHEDULE_END, autoReplyScheduleEnd).apply()
+
+    val autoReplySettings: AutoReplySettings
+        get() = AutoReplySettings(
+            enabled = autoReplyEnabled,
+            message = autoReplyMessage,
+            cooldownSeconds = autoReplyCooldownSeconds,
+            scheduleEnabled = autoReplyScheduleEnabled,
+            scheduleDays = autoReplyScheduleDays,
+            scheduleStartMinutes = autoReplyScheduleStart,
+            scheduleEndMinutes = autoReplyScheduleEnd
+        )
 }
